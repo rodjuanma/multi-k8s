@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: rodimun-com-tls
+spec:
+  commonName: rodimun.com
+  secretName: rodimun-cert-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - rodimun.com
+    - www.rodimun.com
+  acme:
+    config:
+      -http01:
+        ingressClass: ngnix
+      domains:
+        - rodimun.com
+        - www.rodimun.com
